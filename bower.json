@@ -1,0 +1,24 @@
+{
+  "name": "million-meter-swim",
+  "homepage": "https://million-meter-challenge.firebaseapp.com/",
+  "authors": [
+    "orkun-ozen"
+  ],
+  "description": "Million Meters Swim Challenge 2020",
+  "main": "public/index.html",
+  "keywords": [
+    "swim",
+    "sports",
+    "challenge"
+  ],
+  "license": "Orkun Ozen License",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "build"
+  ],
+  "private": true
+}
