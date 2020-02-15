@@ -1,14 +1,14 @@
 import React from "react";
 import GridItem from "components/Grid/GridItem.js";
 import GridContainer from "components/Grid/GridContainer.js";
-import SwimEntryCard from "./SwimEntryCard";
+import SwimTableCard from "./SwimTableCard";
 
-export default function SwimEntry() {
+export default function SwimTable() {
     return (
         <div>
             <GridContainer>
                 <GridItem xs={12} sm={12} md={4}>
-                    <SwimEntryCard/>
+                    <SwimTableCard/>
                 </GridItem>
             </GridContainer>
         </div>
