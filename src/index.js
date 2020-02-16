@@ -17,22 +17,10 @@
 */
 import React from "react";
 import ReactDOM from "react-dom";
-import { createBrowserHistory } from "history";
-import { Router, Route, Switch, Redirect } from "react-router-dom";
-
-// core components
-import AdminWithoutSideBar from "layouts/AdminWithoutSideBar.js";
-
 import "assets/css/material-dashboard-react.css?v=1.8.0";
+import App from "./App";
 
-const hist = createBrowserHistory();
 
-ReactDOM.render(
-  <Router history={hist}>
-    <Switch>
-      <Route path="/admin" component={AdminWithoutSideBar} />
-      <Redirect from="/" to="/admin/dashboard" />
-    </Switch>
-  </Router>,
-  document.getElementById("root")
+ReactDOM.render(<App/>,
+    document.getElementById("root")
 );

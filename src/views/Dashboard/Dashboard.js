@@ -26,18 +26,9 @@ const useStyles = makeStyles(styles);
 
 export default function Dashboard() {
     const classes = useStyles();
+
     return (
         <div>
-            {/*New Entry + Swim Table*/}
-            <GridContainer>
-                <GridItem xs={12} sm={12} md={6}>
-                    <SwimEntryCard/>
-                </GridItem>
-                <GridItem xs={12} sm={12} md={6}>
-                    <SwimTableCard/>
-                </GridItem>
-            </GridContainer>
-
             {/*4 little info*/}
             <GridContainer>
                 <GridItem xs={12} sm={6} md={3}>
@@ -111,6 +102,16 @@ export default function Dashboard() {
                             </div>
                         </CardFooter>
                     </Card>
+                </GridItem>
+            </GridContainer>
+
+            {/*New Entry + Swim Table*/}
+            <GridContainer>
+                <GridItem xs={12} sm={12} md={7}>
+                    <SwimTableCard/>
+                </GridItem>
+                <GridItem xs={12} sm={12} md={5}>
+                    <SwimEntryCard/>
                 </GridItem>
             </GridContainer>
 

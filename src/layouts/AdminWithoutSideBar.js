@@ -8,9 +8,7 @@ import {makeStyles} from "@material-ui/core/styles";
 // core components
 import Navbar from "components/Navbars/NavbarSimple.js";
 import Footer from "components/Footer/Footer.js";
-
 import routes from "routes.js";
-
 import styles from "assets/jss/material-dashboard-react/layouts/adminWithoutSideBarStyle.js";
 
 let ps;
@@ -30,6 +28,7 @@ const switchRoutes = (
             return null;
         })}
         <Redirect from="/admin" to="/admin/dashboard"/>
+        <Redirect from="/" to="/admin/dashboard"/>
     </Switch>
 );
 
@@ -76,7 +75,7 @@ export default function AdminWithoutSideBar({...rest}) {
                 <Navbar
                     routes={routes}
                     handleDrawerToggle={handleDrawerToggle}
-                    title={'Million Meters Swim Challenge 2020'}
+                    title={'Million Meters Swim'}
                     // logo={logo}
                     {...rest}
                 />
