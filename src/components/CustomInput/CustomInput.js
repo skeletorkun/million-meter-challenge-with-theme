@@ -19,7 +19,8 @@ export default function CustomInput(props) {
   const {
     formControlProps,
     labelText,
-    id,
+    name,
+    register,
     labelProps,
     inputProps,
     error,
@@ -46,7 +47,7 @@ export default function CustomInput(props) {
       {labelText !== undefined ? (
         <InputLabel
           className={classes.labelRoot + labelClasses}
-          htmlFor={id}
+          htmlFor={name}
           {...labelProps}
         >
           {labelText}
@@ -58,7 +59,8 @@ export default function CustomInput(props) {
           disabled: classes.disabled,
           underline: underlineClasses
         }}
-        id={id}
+        name={name}
+        inputRef={register}
         {...inputProps}
       />
       {error ? (

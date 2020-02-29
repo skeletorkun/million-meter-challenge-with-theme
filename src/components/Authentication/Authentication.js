@@ -10,10 +10,6 @@ import IconAccountCircle from '@material-ui/icons/AccountCircle'
 import GridItem from "../Grid/GridItem";
 import GridContainer from "../Grid/GridContainer";
 import Hidden from "@material-ui/core/Hidden";
-// import FacebookIcon from '@material-ui/icons/Facebook';
-
-// @material-ui/icons
-// core components
 
 const useStyles = makeStyles(styles);
 
@@ -46,7 +42,7 @@ export default function Authentication(props) {
         </div>
         :
         <div className={classes.flex}>
-            <GridContainer >
+            <GridContainer>
                 <GridItem xs={1} sm={11} md={1}>
                     <Hidden mdUp implementation="css">
                         <Button tooltip="Login" onClick={onLogin} className={classes.title}>

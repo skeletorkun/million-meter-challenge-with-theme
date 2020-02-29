@@ -10,6 +10,7 @@ import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
+import {useForm} from 'react-hook-form';
 
 const styles = {
     cardCategoryWhite: {
@@ -33,53 +34,70 @@ const styles = {
 const useStyles = makeStyles(styles);
 
 export default function SwimEntryCard() {
+    const {register, handleSubmit} = useForm();
     const classes = useStyles();
+
+    const onSubmit = data => {
+        console.log(data);
+    };
+
     return (
         <Card>
-            <CardHeader color="primary">
-                <h4 className={classes.cardTitleWhite}>Enter new session</h4>
-                <p className={classes.cardCategoryWhite}>Add your swim details</p>
-            </CardHeader>
-            <CardBody>
-                <GridContainer>
-                    <GridItem xs={12} sm={12} md={6}>
-                        <CustomInput
-                            labelText="Distance"
-                            id="entry-distance"
-                            formControlProps={{
-                                fullWidth: true
-                            }}
-                        />
-                    </GridItem>
-                    <GridItem xs={12} sm={12} md={6}>
-                        <CustomInput
-                            labelText="Date"
-                            id="entry-date"
-                            formControlProps={{
-                                fullWidth: true
-                            }}
-                        />
-                    </GridItem>
-                </GridContainer>
-                <GridContainer>
-                    <GridItem xs={12} sm={12} md={12}>
-                        <CustomInput
-                            labelText="Notes to add"
-                            id="entry-notes"
-                            formControlProps={{
-                                fullWidth: true
-                            }}
-                            inputProps={{
-                                multiline: true,
-                                rows: 5
-                            }}
-                        />
-                    </GridItem>
-                </GridContainer>
-            </CardBody>
-            <CardFooter>
-                <Button color="primary">Save</Button>
-            </CardFooter>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <CardHeader color="primary">
+                    <h4 className={classes.cardTitleWhite}>Enter new session</h4>
+                    <p className={classes.cardCategoryWhite}>Add your swim details</p>
+                </CardHeader>
+                <CardBody>
+                    <GridContainer>
+                        <GridItem xs={12} sm={12} md={6}>
+                            <CustomInput
+                                id="distance"
+                                name="distance"
+                                register={register}
+                                labelText="Distance"
+                                formControlProps={{
+                                    fullWidth: true
+                                }}
+                            />
+                        </GridItem>
+                        <GridItem xs={12} sm={12} md={6}>
+                            <CustomInput
+                                id="date"
+                                name="date"
+                                register={register}
+                                labelText="Date"
+                                // id="entry-date"
+                                formControlProps={{
+                                    fullWidth: true
+                                }}
+                            />
+                        </GridItem>
+                    </GridContainer>
+                    <GridContainer>
+                        <GridItem xs={12} sm={12} md={12}>
+                            <CustomInput
+                                id="notes"
+                                name="notes"
+                                register={register}
+                                labelText="Notes to add"
+                                // id="entry-notes"
+                                formControlProps={{
+                                    fullWidth: true
+                                }}
+                                inputProps={{
+                                    multiline: true,
+                                    rows: 5,
+                                }}
+                            />
+                        </GridItem>
+                    </GridContainer>
+                </CardBody>
+                <CardFooter>
+                    <Button color="primary" type="submit">Save</Button>
+                </CardFooter>
+            </form>
+
         </Card>
     );
 }
