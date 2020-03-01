@@ -13,7 +13,7 @@ import CardFooter from "components/Card/CardFooter.js";
 import {useForm} from 'react-hook-form';
 import {addSession} from "../../actions/sessionActions";
 import {useDispatch, useSelector} from "react-redux";
-import { useFirebaseConnect, useFirebase } from "react-redux-firebase";
+import {useFirebase} from "react-redux-firebase";
 
 const styles = {
     cardCategoryWhite: {
@@ -39,7 +39,6 @@ const useStyles = makeStyles(styles);
 export default function SwimEntryCard() {
     const firebase = useFirebase();
     const auth = useSelector(state => state.firebase.auth);
-    useFirebaseConnect({path:"data"});
     const {register, handleSubmit} = useForm();
     const dispatch = useDispatch();
     const saveSession = useCallback(

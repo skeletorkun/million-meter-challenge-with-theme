@@ -2,16 +2,19 @@ export const TARGET_UPDATED = "Changed";
 export const ERROR = "Error";
 
 export const editTarget = ({firebase}, target) => {
-    let uid = firebase.auth.currentUser.uid;
-    let currentTarget = firebase.database().ref()
-        .child('data')
-        .child(uid)
+    let users = firebase.database().ref()
+        .child('users');
+
+    let user = users
+        .child(target.uid);
+
+    let targetNode = user
         .child('target');
 
     return (dispatch, getState) => {
-        currentTarget.set(target)
+        targetNode.update(target)
             .then(() => {
-                console.log("Target is set");
+                console.log("Target is set " + JSON.stringify(target));
                 dispatch({type: TARGET_UPDATED, target});
             })
             .catch(err => {

@@ -18,8 +18,8 @@ export default function Authentication(props) {
     const classes = useStyles();
     const user = useSelector(state => state.firebase.profile);
     const { onLogin, onLogout} = props;
-
-    const Compo = () => user != null ?
+    console.log('user is ' + JSON.stringify(user));
+    const Compo = () => !user.isEmpty ?
         <div className={classes.flex}>
             <GridContainer>
                 <GridItem xs={1} sm={1} md={9}>

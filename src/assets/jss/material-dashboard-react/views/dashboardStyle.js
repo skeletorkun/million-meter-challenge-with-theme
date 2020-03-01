@@ -1,14 +1,9 @@
-import {
-  successColor,
-  whiteColor,
-  grayColor,
-  hexToRgb
-} from "assets/jss/material-dashboard-react.js";
+import {grayColor, hexToRgb, successColor, whiteColor} from "assets/jss/material-dashboard-react.js";
 
 const dashboardStyle = {
-  successText: {
-    color: successColor[0]
-  },
+    successText: {
+        color: successColor[0]
+    },
     upArrowCardCategory: {
         width: "16px",
         height: "16px"
@@ -73,10 +68,21 @@ const dashboardStyle = {
         textDecoration: "none",
         "& small": {
             color: grayColor[1],
-      fontWeight: "400",
-      lineHeight: "1"
+            fontWeight: "400",
+            lineHeight: "1"
+        }
+    },
+    targetInput: {
+        fontSize: 28,
+        fontWeight: 300,
+        width: 150,
+        color: grayColor[2],
+        marginTop: "0px",
+        minHeight: "auto",
+        fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
+        marginBottom: "3px",
+        textDecoration: "none",
     }
-  }
 };
 
 export default dashboardStyle;

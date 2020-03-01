@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useCallback} from "react";
 // react plugin for creating charts
 // @material-ui/core
 import {makeStyles} from "@material-ui/core/styles";
@@ -21,11 +21,56 @@ import SwimEntryCard from "../SwimEntry/SwimEntryCard";
 import SwimTableCard from "../SwimTable/SwimTableCard";
 import TotalDistanceSwimChartCard from "../SwimChart/TotalDistanceSwimChartCard";
 import ThisWeekSwimChartCard from "../SwimChart/ThisWeekSwimChartCard";
+import InputBase from "@material-ui/core/InputBase";
+import {useFirebase, useFirebaseConnect} from "react-redux-firebase";
+import {useDispatch, useSelector} from "react-redux";
+import {editTarget} from "../../actions/targetActions";
 
 const useStyles = makeStyles(styles);
 
 export default function Dashboard() {
     const classes = useStyles();
+    const firebase = useFirebase();
+    useFirebaseConnect('users');
+
+    // load all the data of the users
+    const data = useSelector(state => state.firebase.data.users);
+    console.log('data is ' + JSON.stringify(data));
+
+    // get current user
+    const auth = useSelector(state => state.firebase.auth);
+    console.log('auth is ' + JSON.stringify(auth));
+
+    const dispatch = useDispatch();
+    const saveTarget = useCallback(
+        target => dispatch(editTarget({firebase}, target)),
+        [firebase]
+    );
+
+    // default
+    let target = {
+        type: "cumulative",
+        name: "Million meter challenge",
+        distance: 1000000,
+        setOn: new Date()
+    };
+
+    if(!auth.isEmpty && data[auth.uid] && data[auth.uid].target){
+         target = data[auth.uid].target;
+    }
+
+    const sampleTarget = {
+        type: "cumulative",
+        name: "Million meter challenge",
+        setOn: new Date()
+    };
+
+    const onTargetChange = e => {
+        e.preventDefault();
+        sampleTarget.uid = auth.uid;
+        sampleTarget.distance = e.target.value;
+        saveTarget(sampleTarget);
+    };
 
     return (
         <div>
@@ -39,13 +84,16 @@ export default function Dashboard() {
                             </CardIcon>
                             <p className={classes.cardCategory}>Goal</p>
                             <h3 className={classes.cardTitle}>
-                                1M <small>meters</small>
+                                <InputBase className={classes.targetInput} defaultValue={target.distance}
+                                           inputProps={{ style: {textAlign: 'right'} }}
+                                           onChange={(e) => onTargetChange(e)}/>
+                                <small> meters</small>
                             </h3>
                         </CardHeader>
                         <CardFooter stats>
                             <div className={classes.stats}>
                                 <DateRange/>
-                                Set on Feb 15, 2020
+                                {target.setOn}
                             </div>
                         </CardFooter>
                     </Card>

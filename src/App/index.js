@@ -11,8 +11,8 @@ import { useSelector } from "react-redux";
 const hist = createBrowserHistory();
 
 function App(props) {
-    useFirebaseConnect({path:"data"});
-    const data = useSelector(state => state.firebase.ordered.data);
+    useFirebaseConnect('users');
+    const data = useSelector(state => state.firebase.data.users);
     const user = useSelector(state => state.firebase.auth.currentUser);
 
     // Show a message while loading
@@ -20,7 +20,6 @@ function App(props) {
         return <div id="loader"><CircularProgress/></div>
     }
 
-    console.log('data is loaded : ' + data);
     async function onLogin(){
         try {
             await firebase.login({provider:'facebook', type:'popup'});
