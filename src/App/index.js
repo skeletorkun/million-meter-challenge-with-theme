@@ -13,12 +13,7 @@ const hist = createBrowserHistory();
 function App(props) {
     useFirebaseConnect({path:"data"});
     const data = useSelector(state => state.firebase.ordered.data);
-    const avatar = useSelector(state => state.firebase.auth.currentUser && state.firebase.auth.currentUser.photoURL);
-    const username = useSelector(state => state.firebase.auth.currentUser && state.firebase.auth.currentUser.displayName);
-
-    const [firebaseInitialized, setFirebaseInitialized] = useState(false);
-    const [isLoggedIn, setLoggedIn] = useState(false);
-
+    const user = useSelector(state => state.firebase.auth.currentUser);
 
     // Show a message while loading
     if (!isLoaded(data)) {
@@ -28,8 +23,7 @@ function App(props) {
     console.log('data is loaded : ' + data);
     async function onLogin(){
         try {
-            await firebase.login();
-            setLoggedIn(true);
+            await firebase.login({provider:'facebook', type:'popup'});
         } catch (error) {
             alert(error.message)
         }
@@ -37,15 +31,13 @@ function App(props) {
 
     async function onLogout() {
         await firebase.logout();
-        setLoggedIn(false);
     }
 
     let adminWithoutSideBar = (props) => <AdminWithoutSideBar
         onLogin={onLogin}
         onLogout={onLogout}
-        avatarUrl={avatar}
-        userName={username}
-        isLoggedIn={isLoggedIn}
+        avatarUrl={user && user.photoURL}
+        userName={user && user.displayName}
         {...props} />;
 
     return (

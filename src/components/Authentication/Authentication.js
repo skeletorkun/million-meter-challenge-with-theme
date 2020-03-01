@@ -10,21 +10,23 @@ import IconAccountCircle from '@material-ui/icons/AccountCircle'
 import GridItem from "../Grid/GridItem";
 import GridContainer from "../Grid/GridContainer";
 import Hidden from "@material-ui/core/Hidden";
+import {useSelector} from "react-redux";
 
 const useStyles = makeStyles(styles);
 
 export default function Authentication(props) {
     const classes = useStyles();
-    const {isLoggedIn, onLogin, onLogout, avatarUrl, userName} = props;
+    const user = useSelector(state => state.firebase.profile);
+    const { onLogin, onLogout} = props;
 
-    const Compo = () => isLoggedIn ?
+    const Compo = () => user != null ?
         <div className={classes.flex}>
             <GridContainer>
                 <GridItem xs={1} sm={1} md={9}>
                     <Hidden mdDown implementation="css">
 
                         <Button color="inherit" href="#" className={classes.title} style={{float: 'right'}}>
-                            Welcome {userName}
+                            Welcome {user.displayName}
                         </Button>
                     </Hidden>
                 </GridItem>
@@ -34,7 +36,7 @@ export default function Authentication(props) {
                                 color="inherit"
                                 onClick={onLogout}
                     >
-                        <Avatar alt='' src={avatarUrl} width='50px'/>
+                        <Avatar alt='' src={user.avatarUrl} width='50px'/>
                     </IconButton>
                 </GridItem>
             </GridContainer>

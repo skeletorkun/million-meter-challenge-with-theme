@@ -6,8 +6,8 @@ import "perfect-scrollbar/css/perfect-scrollbar.css";
 // @material-ui/core components
 import {makeStyles} from "@material-ui/core/styles";
 // core components
-import Navbar from "components/Navbars/NavbarSimple.js";
-import Footer from "components/Footer/Footer.js";
+import Navbar from "../components/Navbars/NavbarSimple";
+import Footer from "../components/Footer/Footer";
 import routes from "routes.js";
 import styles from "assets/jss/material-dashboard-react/layouts/adminWithoutSideBarStyle.js";
 
@@ -76,7 +76,6 @@ export default function AdminWithoutSideBar({...rest}) {
                     routes={routes}
                     handleDrawerToggle={handleDrawerToggle}
                     title={'Million Meters Swim'}
-                    // logo={logo}
                     {...rest}
                 />
                 <div className={classes.content}>
