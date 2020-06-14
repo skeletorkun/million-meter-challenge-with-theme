@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import firebase from '../firebase'
+import strava from '../strava'
 import {CircularProgress} from '@material-ui/core';
 import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 import {createBrowserHistory} from "history";
@@ -7,6 +8,9 @@ import AdminWithoutSideBar from '../layouts/AdminWithoutSideBar';
 
 import { useFirebaseConnect, isLoaded, isEmpty } from "react-redux-firebase";
 import { useSelector } from "react-redux";
+import { client } from '../oauth2';
+import StravaLogin from '../views/StravaLogin/StravaLogin';
+import StravaLoginCallback from '../views/StravaLoginCallback/StravaLoginCallback';
 
 const hist = createBrowserHistory();
 
@@ -20,9 +24,18 @@ function App(props) {
         return <div id="loader"><CircularProgress/></div>
     }
 
-    async function onLogin(){
+    function onStravaLogin() {
+        // Open the Auth flow in a popup.
+        const uri = client.code.getUri().replace('localhost', 'http://localhost');
+        console.log('redirectUri ' + uri);
+
+        window.open(uri, 'firebaseAuth', 'height=715,width=700');
+    }
+
+    async function onFacebookLogin(){
         try {
             await firebase.login({provider:'facebook', type:'popup'});
+
         } catch (error) {
             alert(error.message)
         }
@@ -33,7 +46,8 @@ function App(props) {
     }
 
     let adminWithoutSideBar = (props) => <AdminWithoutSideBar
-        onLogin={onLogin}
+        onFacebookLogin={onFacebookLogin}
+        onStravaLogin={onStravaLogin}
         onLogout={onLogout}
         avatarUrl={user && user.photoURL}
         userName={user && user.displayName}
@@ -42,6 +56,8 @@ function App(props) {
     return (
         <Router history={hist}>
             <Switch>
+                <Route path="/auth/strava/callback" component={StravaLoginCallback}/>
+                <Route path="/auth/strava" component={StravaLogin}/>
                 <Route path="/" render={adminWithoutSideBar}/>
                 <Redirect from="/" to="/admin/dashboard"/>
             </Switch>

@@ -52,7 +52,7 @@ export default function Dashboard() {
         type: "cumulative",
         name: "Million meter challenge",
         distance: 1000000,
-        setOn: new Date()
+        setOn: new Date().toDateString()
     };
 
     if(!auth.isEmpty && data[auth.uid] && data[auth.uid].target){

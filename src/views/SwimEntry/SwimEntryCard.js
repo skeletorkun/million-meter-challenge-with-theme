@@ -1,4 +1,4 @@
-import React, {useCallback} from "react";
+import React, { useCallback, useEffect } from "react";
 // @material-ui/core components
 import {makeStyles} from "@material-ui/core/styles";
 // core components
@@ -45,6 +45,7 @@ export default function SwimEntryCard() {
         session => dispatch(addSession({firebase}, session)),
         [firebase]
     );
+
     const classes = useStyles();
 
     const onSubmit = session => {
