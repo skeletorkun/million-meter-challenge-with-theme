@@ -21,17 +21,18 @@
     "react-hook-form": "^4.10.2",
     "react-redux": "^7.2.0",
     "react-redux-firebase": "^3.5.1",
-    "react-router-dom": "5.0.1",
+    "react-router-dom": "^5.1.0",
     "react-scripts": "3.1.0",
     "react-social-login-buttons": "^3.1.0",
     "react-swipeable-views": "0.13.3",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "strava-v3": "^2.0.5",
-    "react-router": "latest"
+    "react-router": "latest",
+    "flatted": "latest"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "HTTPS=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",

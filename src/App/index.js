@@ -26,7 +26,7 @@ function App(props) {
 
     function onStravaLogin() {
         // Open the Auth flow in a popup.
-        const uri = client.code.getUri().replace('localhost', 'http://localhost');
+        const uri = client.code.getUri();
         console.log('redirectUri ' + uri);
 
         window.open(uri, 'firebaseAuth', 'height=715,width=700');
