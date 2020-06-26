@@ -8,8 +8,7 @@ import AdminWithoutSideBar from '../layouts/AdminWithoutSideBar';
 
 import { useFirebaseConnect, isLoaded, isEmpty } from "react-redux-firebase";
 import { useSelector } from "react-redux";
-import { client } from '../oauth2';
-import StravaLogin from '../views/StravaLogin/StravaLogin';
+import { client } from '../../functions/oauth2';
 import StravaLoginCallback from '../views/StravaLoginCallback/StravaLoginCallback';
 
 const hist = createBrowserHistory();
@@ -25,11 +24,7 @@ function App(props) {
     }
 
     function onStravaLogin() {
-        // Open the Auth flow in a popup.
-        const uri = client.code.getUri();
-        console.log('redirectUri ' + uri);
-
-        window.open(uri, 'firebaseAuth', 'height=715,width=700');
+        window.open('/redirect', 'firebaseAuth', 'height=715,width=700');
     }
 
     async function onFacebookLogin(){
@@ -57,7 +52,6 @@ function App(props) {
         <Router history={hist}>
             <Switch>
                 <Route path="/auth/strava/callback" component={StravaLoginCallback}/>
-                <Route path="/auth/strava" component={StravaLogin}/>
                 <Route path="/" render={adminWithoutSideBar}/>
                 <Redirect from="/" to="/admin/dashboard"/>
             </Switch>

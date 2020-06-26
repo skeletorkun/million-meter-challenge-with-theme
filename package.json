@@ -11,6 +11,9 @@
     "classnames": "2.2.6",
     "client-oauth2": "^4.3.0",
     "firebase": "^7.15.1",
+    "firebase-admin": "^8.12.1",
+    "firebase-functions": "^3.7.0",
+    "flatted": "latest",
     "history": "4.9.0",
     "perfect-scrollbar": "1.4.0",
     "prop-types": "15.7.2",
@@ -21,15 +24,14 @@
     "react-hook-form": "^4.10.2",
     "react-redux": "^7.2.0",
     "react-redux-firebase": "^3.5.1",
+    "react-router": "latest",
     "react-router-dom": "^5.1.0",
     "react-scripts": "3.1.0",
     "react-social-login-buttons": "^3.1.0",
     "react-swipeable-views": "0.13.3",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "strava-v3": "^2.0.5",
-    "react-router": "latest",
-    "flatted": "latest"
+    "strava-v3": "^2.0.5"
   },
   "scripts": {
     "start": "HTTPS=true react-scripts start",

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { client } from '../../oauth2';
+import { client } from '../../../functions/oauth2';
 // ESM
 import {parse, stringify} from 'flatted';
 import { useFirebase } from 'react-redux-firebase';
